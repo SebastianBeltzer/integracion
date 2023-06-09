@@ -1,0 +1,17 @@
+.texto {
+  background-color: red;
+  font: xx-large;
+  font-size: xx-large;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+}
+.contenedor {
+  background-color: rgb(255, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 157px 100px 158px 100px;
+}

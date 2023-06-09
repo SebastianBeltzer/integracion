@@ -1,0 +1,181 @@
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 400px;
+  background: linear-gradient(
+    120deg,
+    #ffffff47 30%,
+    #fffbd1ab 38%,
+    #fff8d9bf 40%,
+    #ffffff46 48%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: load89234 2s infinite;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  padding: 0.4em;
+  border-radius: 6px;
+  position: relative;
+  border: 2px solid #c3c6ce;
+  transition: 0.8s ease-out;
+  overflow: visible;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+
+.cardimage {
+  width: 100%;
+  height: 60%;
+  position: relative;
+  border-radius: 5px;
+}
+
+.category {
+  text-transform: uppercase;
+  font-size: 0.7em;
+  font-weight: 600;
+  background-color: #000000b0;
+  color: rgb(60, 255, 0);
+  padding: 8px 7px 0;
+  border-radius: 5px;
+}
+.category h2 {
+  margin-top: 3px;
+  margin-bottom: 7.8px;
+  padding-bottom: 3px;
+  font-size: xx-large;
+  padding-bottom: -5px;
+}
+.category:hover {
+  cursor: pointer;
+}
+
+.heading p {
+  font-size: x-large;
+  color: rgb(201, 199, 199);
+  background-color: #424242b0;
+  border-radius: 5px;
+}
+
+.heading:hover {
+  cursor: pointer;
+}
+
+.cardbutton {
+  transform: translate(-50%, 125%);
+  width: 60%;
+  border-radius: 1rem;
+  border: none;
+  background-color: #6dcf1c;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  opacity: 0;
+  transition: 0.3s ease-out;
+}
+.card:hover {
+  border-color: #07d300;
+  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card:hover .cardbutton {
+  transform: translate(-50%, 50%);
+  opacity: 1;
+}
+
+@keyframes load89234 {
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.divBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 50px;
+}
+.textconteiner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 8px;
+}
+.imgconteiner {
+  display: contents;
+  justify-content: center;
+  align-items: center;
+}
+
+.card2 {
+  box-sizing: border-box;
+  width: 320px;
+  height: 420px;
+  background: linear-gradient(
+    120deg,
+    #ffffff47 30%,
+    #fffbd1ab 38%,
+    #fff8d9bf 40%,
+    #ffffff46 48%
+  );
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  animation: load89234 2s infinite;
+  border: 2px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  font-weight: bolder;
+  color: black;
+  margin-right: 30px;
+}
+
+.card2:hover {
+  border: 2px solid #07d300;
+  transform: scale(1.05);
+}
+
+.btn2 {
+  color: #000000;
+  text-decoration: none;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(-45deg, #6bf829 0%, #dfff0f 100%);
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin: 5px;
+}
+
+.btn2:hover {
+  outline: 2px solid #000000;
+  background: linear-gradient(-45deg, #6bf829 0%, #dfff0f 100%);
+  color: #000000;
+}
+
+.btn2:active {
+  box-shadow: none;
+}

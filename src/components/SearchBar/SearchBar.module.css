@@ -1,0 +1,25 @@
+.inputstyle {
+  padding: 8px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+  margin-top: 5px;
+}
+
+.inputstyle:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.bttn {
+  margin-top: 5px;
+  padding: 8px;
+  margin-left: 3px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  background-color: white;
+}
