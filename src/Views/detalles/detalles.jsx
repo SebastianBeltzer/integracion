@@ -5,11 +5,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./detalles.module.css";
 
-export default function Detalles(props) {
+export default function Detalles() {
   const { id } = useParams();
   const [character, setCharacter] = useState([]);
   const naviguet = useNavigate();
-  const { characters, onClose } = props;
 
   useEffect(() => {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(
@@ -65,12 +64,7 @@ export default function Detalles(props) {
               </button>
             </div>
           </div>
-          <button
-            className={style.cardbutton}
-            onClick={() => {
-              onClose(character.id);
-            }}
-          >
+          <button className={style.cardbutton}>
             {`Estado: ${character.status}`}
           </button>
         </div>

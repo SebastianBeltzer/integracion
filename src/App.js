@@ -1,24 +1,29 @@
 import "./App.css";
-import { Route, Routes, rou, useLocation, useNavigate } from "react-router-dom";
-import Cards from "./components/Cards/Cards.jsx";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import Cards from "./components/cards/Cards";
 import NavBar from "./components/NavBar/NavBar";
 //! anterior importe donde se encontraban los personajes
 // import characters from "./data.js";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 import About from "./Views/abaut/abaut";
 import Detalles from "./Views/detalles/detalles";
+
 import Error from "./Views/error/error";
 import LoguinForms from "./Views/user/loguinForms";
+import Favorties from "./Views/fav/favorties";
+import { useDispatch } from "react-redux";
+import { removeFavorite } from "./redux/actions";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [access, setAccess] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [access, setAccess] = useState(false);
   const EMAIL = "seba@gmail.com";
   const PASSWORD = "4Password";
 
@@ -31,7 +36,7 @@ function App() {
 
   useEffect(() => {
     !access && navigate("/");
-  }, [access]);
+  }, [access, navigate]);
 
   function onSearch(id) {
     axios(`https://rickandmortyapi.com/api/character/${id}`).then(
@@ -44,13 +49,14 @@ function App() {
       }
     );
   }
-  /*
-  ! funcion que explico gama para recorrer una api sin axios
-  fetch(https://rickandmortyapi.com/api/character/${id})
-  .then((res) => res.json())
-  .then((data) => setCharacters([...prevCharacters, data]);)
-  
-  */
+
+  function closeHandler(id) {
+    let deleted = characters.filter((character) => character.id !== Number(id));
+
+    dispatch(removeFavorite(id));
+
+    setCharacters(deleted);
+  }
 
   function randomHandler() {
     let haveIt = [];
@@ -76,11 +82,6 @@ function App() {
       return false;
     }
   }
-  //
-  function closeHandler(id) {
-    let deleted = characters.filter((character) => character.id !== Number(id));
-    setCharacters(deleted);
-  }
 
   return (
     <div className="App">
@@ -94,11 +95,9 @@ function App() {
           path="/home"
           element={<Cards characters={characters} onClose={closeHandler} />}
         />
-        <Route
-          path="/detalles/:id"
-          element={<Detalles characters={characters} onClose={closeHandler} />}
-        />
+        <Route path="/detalles/:id" element={<Detalles />} />
         <Route path="/about" element={<About />} />
+        <Route path="/favorites" element={<Favorties />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </div>

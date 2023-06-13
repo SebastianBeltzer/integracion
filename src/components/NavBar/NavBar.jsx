@@ -12,6 +12,9 @@ export default function NavBar({ onSearch, random }) {
       <div className={style.link2}>
         <NavLink to="/home">inicio</NavLink>
       </div>
+      <div className={style.link2}>
+        <NavLink to="/favorites">Favs</NavLink>
+      </div>
 
       <SearchBar onSearch={onSearch} />
       <button className={style.btn} onClick={random}>

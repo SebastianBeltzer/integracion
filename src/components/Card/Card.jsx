@@ -1,20 +1,46 @@
 import { useNavigate } from "react-router-dom";
-
+import { connect } from "react-redux";
 //! IMPORTAR CSS {IMP "STYLE" FROM "./CARD.MODULE.CSS"}
 import style from "./Card.module.css";
 import { useEffect, useState } from "react";
+import { addFavorite, removeFavorite } from "../../redux/actions";
 
 //Diseñaremos las cartas y en Cards modificaremos su posicion.
 function Card(props) {
-  const { character, onClose, addFavorito, removeFavorito, favorites } = props;
+  const navigate = useNavigate();
+  const { character, onClose, addFavorite, removeFavorite, favorites } = props;
+  const { id } = character;
 
-  //   character = {
-  //     id: 1,
-  //     name: "Rick Sanchez",
-  //     species: "Human",
-  //     gender: "Male",
-  //     image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-  //   };
+  const [closeBtn, setCloseBtn] = useState(true);
+  const [fav, setFav] = useState(false);
+
+  useEffect(() => {
+    if (!onClose) {
+      setCloseBtn(false);
+    }
+  }, [onClose]);
+
+  useEffect(() => {
+    favorites.forEach((fav) => {
+      if (fav.id === id) {
+        setFav(true);
+      }
+    });
+  }, [favorites, id]);
+
+  function navigateHandler() {
+    navigate(`/detalles/${character.id}`);
+  }
+
+  function handleFavorite(character) {
+    if (!fav) {
+      addFavorite(character);
+      setFav(true);
+    } else {
+      removeFavorite(character);
+      setFav(false);
+    }
+  }
 
   return (
     <div className={style.card}>
@@ -22,7 +48,7 @@ function Card(props) {
         className={style.cardimage}
         src={character.image}
         alt={character.name}
-        onClick={naviguetHandlers}
+        onClick={navigateHandler}
       />
       <div className={style.category}>
         <h2>Name: {character.name}</h2>
@@ -33,25 +59,47 @@ function Card(props) {
           Gender: {character.gender}
         </p>
       </div>
-      <button
-        className={style.cardbutton}
-        onClick={() => {
-          onClose(character.id);
-        }}
-      >
-        DELETE
-      </button>
-
       {fav ? (
-        <button onClick={() => handleFavorite(character.id)}>❤️</button>
+        <button
+          className={style.fav}
+          onClick={() => handleFavorite(character.id)}
+        >
+          ❤️
+        </button>
       ) : (
-        <button onClick={() => handleFavorite(character)}>🤍</button>
+        <button className={style.fav} onClick={() => handleFavorite(character)}>
+          🤍
+        </button>
+      )}
+
+      {closeBtn && (
+        <button
+          className={style.cardbutton}
+          onClick={() => {
+            onClose(character.id);
+          }}
+        >
+          DELETE
+        </button>
       )}
     </div>
   );
 }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addFavorite: (character) => dispatch(addFavorite(character)),
 
-export default Card;
+    removeFavorite: (id) => dispatch(removeFavorite(id)),
+  };
+};
+
+const mapStateToProps = (state) => {
+  return {
+    favorites: state.myFavorites,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);
 
 /*
 <button
